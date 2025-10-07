@@ -1,0 +1,42 @@
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .main-info {
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+        padding: 1rem !important;
+    }
+
+    .general-card,
+    .next-days-card {
+        max-width: 100% !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    .forecast-cards {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .main-info {
+        flex-direction: row !important;
+        gap: 3.75rem !important;
+        padding: 1.75rem !important;
+    }
+
+    .general-card {
+        max-width: 20rem !important;
+    }
+
+    .next-days-card {
+        max-width: 12rem !important;
+    }
+
+    .forecast-cards {
+        flex-direction: row !important;
+        gap: 1.25rem !important;
+    }
+}
+
+@import "tailwindcss";
