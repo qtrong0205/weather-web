@@ -1,6 +1,20 @@
+import { useState } from "react";
+import { getCityCoords } from "../../service/api";
+import { createData } from "../../helper/getData";
+
 const SearchBar = () => {
+    const [inputValue, setInputValue] = useState<string>("");
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        const res = await getCityCoords(inputValue);
+        if (res) {
+            console.log(res)
+            await createData(res.lat, res.lon);
+        }
+    }
+
     return (
-        <form className="w-full max-w-md  px-3 sm:px-0">
+        <form className="w-full max-w-md px-3 sm:px-0" onSubmit={handleSubmit}>
             <label
                 htmlFor="default-search"
                 className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -29,7 +43,6 @@ const SearchBar = () => {
 
                 {/* input */}
                 <input
-                    type="search"
                     id="default-search"
                     placeholder="Search..."
                     required
@@ -38,6 +51,8 @@ const SearchBar = () => {
                      dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 
                      dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
                      sm:py-3 sm:pr-28 transition-all duration-300"
+                    onChange={(e) => setInputValue(e.target.value)}
+                    value={inputValue}
                 />
 
                 {/* button */}
