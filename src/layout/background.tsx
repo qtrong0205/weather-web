@@ -1,5 +1,5 @@
 // Background.tsx
-import DarkVeil from "./DarkVeil"
+import DarkVeil from "../helper/DarkVeil"
 
 function Background() {
     return (

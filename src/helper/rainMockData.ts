@@ -1,0 +1,28 @@
+// src/data/rainMockData.ts
+
+export const rainMockData = [
+    { time: "00:00", rain: 0 },
+    { time: "01:00", rain: 0 },
+    { time: "02:00", rain: 0.2 },
+    { time: "03:00", rain: 0.5 },
+    { time: "04:00", rain: 0.3 },
+    { time: "05:00", rain: 0 },
+    { time: "06:00", rain: 0 },
+    { time: "07:00", rain: 0.1 },
+    { time: "08:00", rain: 0.8 },
+    { time: "09:00", rain: 1.5 },
+    { time: "10:00", rain: 2.3 },
+    { time: "11:00", rain: 1.9 },
+    { time: "12:00", rain: 1.2 },
+    { time: "13:00", rain: 0.6 },
+    { time: "14:00", rain: 0.3 },
+    { time: "15:00", rain: 0 },
+    { time: "16:00", rain: 0 },
+    { time: "17:00", rain: 0.7 },
+    { time: "18:00", rain: 2.1 },
+    { time: "19:00", rain: 3.2 },
+    { time: "20:00", rain: 2.7 },
+    { time: "21:00", rain: 1.4 },
+    { time: "22:00", rain: 0.9 },
+    { time: "23:00", rain: 0.3 },
+]

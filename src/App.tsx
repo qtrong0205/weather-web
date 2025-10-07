@@ -5,7 +5,7 @@ import MainInfo from "./layout/MainInfo"
 
 function App() {
   return (
-    <div style={{ position: "relative" }}>
+    <div className="relative min-h-screen overflow-x-hidden ">
       <Background />
       <Header />
       <MainInfo />

@@ -1,5 +1,5 @@
 import DetailCard from "../components/detail/DetailCard"
-import Graph from "../components/detail/Graph"
+import RainChart from "../components/detail/Graph"
 import ForecastCards from "../components/main-content/forecast"
 import GeneralCard from "../components/main-content/GeneralCard"
 
@@ -14,16 +14,17 @@ const MainInfo = () => {
                     <ForecastCards />
                 </div>
             </div>
-            <div className="w-full flex justify-center lg:flex-row flex-col">
-                <div className="grid sm:grid-cols-2 grid-cols-1 mx-auto p-4 lg:w-[40vw] w-[60vw] gap-y-0 gap-x-10">
+            <div className="w-full flex flex-col lg:flex-row items-center justify-center">
+                <div className="grid sm:grid-cols-2 grid-cols-1 p-4 lg:w-[40vw] w-[60vw] gap-y-0 gap-x-10 place-items-center">
                     <DetailCard />
                     <DetailCard />
                     <DetailCard />
                     <DetailCard />
                 </div>
-                <div className="grid grid-cols-2 mx-auto p-4 w-[40vw]">
-                    <Graph />
+                <div className="p-4 w-[40vw]">
+                    <RainChart />
                 </div>
+
             </div>
         </>
     )
