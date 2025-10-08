@@ -16,7 +16,10 @@ const MainInfo = (props: MainInfoProps) => {
                     />
                 </div>
                 <div className="w-full lg:w-2/3">
-                    <ForecastCards />
+                    <ForecastCards
+                        isSearch={isSearch}
+                        setIsSearch={setIsSearch}
+                    />
                 </div>
             </div>
             <div className="w-full flex flex-col lg:flex-row items-center justify-center">

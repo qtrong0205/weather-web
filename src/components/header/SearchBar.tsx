@@ -10,10 +10,10 @@ const SearchBar = (props: HeaderProps) => {
         e.preventDefault();
         const res = await getCityCoords(inputValue);
         if (res) {
-            console.log("data at search", res)
             await createData(res.lat, res.lon);
         }
         setIsSearch(true)
+        setInputValue("");
     }
 
     return (

@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+const forecastApiKey = import.meta.env.VITE_FORECAST_API_KEY;
 
 const getCityCoords = async (city: string) => {
     try {
@@ -28,5 +29,16 @@ const getWeatherData = async (lat: number, lon: number) => {
     }
 }
 
-export { getCityCoords, getWeatherData };
+const getForecastDataAPI = async (city: string) => {
+    try {
+        const data = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${forecastApiKey}&q=${city}&days=7&aqi=no&alerts=no`)
+        return data.data;
+    }
+    catch (err: any) {
+        console.error("Lỗi khi lấy dữ liệu dự báo:", err.message);
+        return null;
+    }
+}
+
+export { getCityCoords, getWeatherData, getForecastDataAPI };
 

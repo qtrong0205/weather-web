@@ -1,4 +1,4 @@
-import { getWeatherData } from "../service/api";
+import { getForecastDataAPI, getWeatherData } from "../service/api";
 
 export interface IWeatherData {
     coord: {
@@ -92,7 +92,9 @@ const createData = async (lat: number, lon: number) => {
     else {
         return null;
     }
+    getForecastData();
 }
+
 
 interface IGeneralData {
     city: string;
@@ -109,6 +111,20 @@ interface IGeneralData {
     time: string;
 }
 
+const getLocalTime = (dt: number, timezone: number) => {
+    const utc = dt * 1000; // thời gian UTC
+    const local = utc + timezone * 1000; // thêm offset của địa điểm
+    const date = new Date(local);
+
+    // ép toLocale theo UTC để tránh bị cộng thêm timezone máy
+    return date.toLocaleTimeString('vi-VN', {
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'UTC'
+    });
+};
+
+
 const getGeneralData = () => {
     const generalData: IGeneralData = {
         city: weatherData.name,
@@ -120,11 +136,36 @@ const getGeneralData = () => {
         wind: weatherData.wind.speed,
         pressure: weatherData.main.pressure,
         humidity: weatherData.main.humidity,
-        sunrise: new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        sunset: new Date(weatherData.sys.sunset * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        time: getLocalTime(weatherData.dt, weatherData.timezone),
+        sunrise: getLocalTime(weatherData.sys.sunrise, weatherData.timezone),
+        sunset: getLocalTime(weatherData.sys.sunset, weatherData.timezone),
+
     };
     return generalData;
 }
 
-export { createData, getGeneralData };
+export interface IForecastData {
+    date: string;
+    text: string
+    icon: string;
+    minTemp: number;
+    maxTemp: number;
+}
+
+let forecastData: IForecastData[] = []
+
+const getForecastData = async () => {
+    const res = await getForecastDataAPI(weatherData.name);
+    res && (forecastData = res.forecast.forecastday.map((day: any) => ({
+        date: day.date,
+        text: day.day.condition.text,
+        icon: day.day.condition.icon,
+        minTemp: day.day.mintemp_c,
+        maxTemp: day.day.maxtemp_c,
+    })));
+    console.log("forecast data at helper", forecastData);
+    return forecastData
+}
+
+
+export { createData, getGeneralData, getForecastData };

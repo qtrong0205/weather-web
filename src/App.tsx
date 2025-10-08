@@ -6,7 +6,6 @@ import MainInfo from "./layout/MainInfo"
 
 function App() {
   const [isSearch, setIsSearch] = useState<boolean>(false);
-  console.log("isSearch in app", isSearch)
 
   return (
     <div className="relative min-h-screen overflow-x-hidden ">
