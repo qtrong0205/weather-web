@@ -2,13 +2,18 @@ import DetailCard from "../components/detail/DetailCard"
 import RainChart from "../components/detail/Graph"
 import ForecastCards from "../components/main-content/forecast"
 import GeneralCard from "../components/main-content/GeneralCard"
+import type { MainInfoProps } from "../helper/prop"
 
-const MainInfo = () => {
+const MainInfo = (props: MainInfoProps) => {
+    const { isSearch, setIsSearch } = props;
     return (
         <>
             <div className="w-full flex flex-col lg:flex-row lg:justify-center gap-7 lg:gap-15 mx-auto p-4 lg:p-5 max-w-full lg:max-w-5xl">
-                <div className="w-full lg:w-1/3 mb-7 lg:mb-0">
-                    <GeneralCard />
+                <div className="w-full lg:w-1/3 mb-7 lg:mb-0 flex justify-center">
+                    <GeneralCard
+                        isSearch={isSearch}
+                        setIsSearch={setIsSearch}
+                    />
                 </div>
                 <div className="w-full lg:w-2/3">
                     <ForecastCards />

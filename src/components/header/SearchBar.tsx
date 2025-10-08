@@ -1,16 +1,19 @@
 import { useState } from "react";
 import { getCityCoords } from "../../service/api";
 import { createData } from "../../helper/getData";
+import type { HeaderProps } from "../../helper/prop";
 
-const SearchBar = () => {
+const SearchBar = (props: HeaderProps) => {
     const [inputValue, setInputValue] = useState<string>("");
+    const { isSearch, setIsSearch } = props;
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const res = await getCityCoords(inputValue);
         if (res) {
-            console.log(res)
+            console.log("data at search", res)
             await createData(res.lat, res.lon);
         }
+        setIsSearch(true)
     }
 
     return (
