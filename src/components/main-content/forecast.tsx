@@ -8,6 +8,7 @@ const ForecastCards = (props: MainInfoProps) => {
     const { isSearch, setIsSearch } = props;
 
     useEffect(() => {
+        if (!isSearch) return;
         async function fetchData() {
             const data = await getForecastData();
             setForecastData(data);

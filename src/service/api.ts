@@ -40,5 +40,18 @@ const getForecastDataAPI = async (city: string) => {
     }
 }
 
-export { getCityCoords, getWeatherData, getForecastDataAPI };
+const getRainDataAPI = async (lat: number, lon: number) => {
+    try {
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=precipitation,precipitation_probability&timezone=Asia%2FHo_Chi_Minh
+`;
+        const res = await axios.get(url);
+        return res.data;
+    }
+    catch (err: any) {
+        console.error("Lỗi khi lấy dữ liệu lượng mưa:", err.message);
+        return null;
+    }
+}
+
+export { getCityCoords, getWeatherData, getForecastDataAPI, getRainDataAPI };
 

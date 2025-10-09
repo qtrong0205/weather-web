@@ -1,4 +1,4 @@
-import { getForecastDataAPI, getWeatherData } from "../service/api";
+import { getForecastDataAPI, getRainDataAPI, getWeatherData } from "../service/api";
 
 export interface IWeatherData {
     coord: {
@@ -144,6 +144,23 @@ const getGeneralData = () => {
     return generalData;
 }
 
+export interface IDetailData {
+    wind: number;
+    visibility: number;
+    pressure: number;
+    humidity: number
+}
+
+const getDetailData = () => {
+    const detailData: IDetailData = {
+        wind: weatherData.wind.speed,
+        visibility: weatherData.visibility,
+        pressure: weatherData.main.pressure,
+        humidity: weatherData.main.humidity
+    }
+    return detailData
+}
+
 export interface IForecastData {
     date: string;
     text: string
@@ -163,9 +180,26 @@ const getForecastData = async () => {
         minTemp: day.day.mintemp_c,
         maxTemp: day.day.maxtemp_c,
     })));
-    console.log("forecast data at helper", forecastData);
     return forecastData
 }
 
+const getRainData = async () => {
+    const res = await getRainDataAPI(weatherData.coord.lat, weatherData.coord.lon);
 
-export { createData, getGeneralData, getForecastData };
+    if (!res || !res.hourly) {
+        console.log("Không có dữ liệu mưa!");
+        return [];
+    }
+
+    const times: string[] = res.hourly.time || [];
+    const popArr: number[] | undefined = res.hourly.precipitation_probability;
+
+    const rainData = times.slice(0, 24).map((t, i) => ({
+        time: t.slice(-5, -1) + "0", // ví dụ: "2025-10-08T03:00"
+        pop: popArr ? popArr[i] ?? null : null
+    }));
+
+    return rainData;
+};
+
+export { createData, getGeneralData, getForecastData, getDetailData, getRainData };
