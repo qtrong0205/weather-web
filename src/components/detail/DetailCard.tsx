@@ -1,5 +1,3 @@
-import { use, useEffect } from "react";
-
 interface DetailCardProps {
     cardKey: string;
     value: number;

@@ -1,5 +1,5 @@
 export interface HeaderProps {
-    isSearch: boolean;
+    isSearch?: boolean;
     setIsSearch: (value: boolean) => void;
 }
 

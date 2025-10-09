@@ -5,7 +5,7 @@ import type { HeaderProps } from "../../helper/prop";
 
 const SearchBar = (props: HeaderProps) => {
     const [inputValue, setInputValue] = useState<string>("");
-    const { isSearch, setIsSearch } = props;
+    const { setIsSearch } = props;
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const res = await getCityCoords(inputValue);
