@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import type { MainInfoProps } from "../../helper/prop";
+import { useContext, useEffect, useState } from "react";
 import NextDaysCard from "./NextDaysCard";
 import { getForecastData, type IForecastData } from "../../helper/getData";
+import { SearchContext } from "../../context/SearchContext";
 
-const ForecastCards = (props: MainInfoProps) => {
+const ForecastCards = () => {
     const [forecastData, setForecastData] = useState<IForecastData[]>([]);
-    const { isSearch, setIsSearch } = props;
+    const { isSearch, setIsSearch } = useContext(SearchContext);
 
     useEffect(() => {
         if (!isSearch) return;

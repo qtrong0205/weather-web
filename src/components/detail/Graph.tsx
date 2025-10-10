@@ -1,10 +1,10 @@
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getRainData } from "../../helper/getData";
-import type { MainInfoProps } from "../../helper/prop";
+import { SearchContext } from "../../context/SearchContext";
 
-export default function RainChart(props: MainInfoProps) {
-    const { isSearch, setIsSearch } = props;
+export default function RainChart() {
+    const { isSearch, setIsSearch } = useContext(SearchContext);
     const [data, setData] = useState<{ time: string; pop: number | null }[]>([]);
 
     useEffect(() => {

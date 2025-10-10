@@ -1,13 +1,13 @@
-import { useEffect } from "react"
+import { useContext, useEffect } from "react"
 import DetailCard from "../components/detail/DetailCard"
 import RainChart from "../components/detail/Graph"
 import ForecastCards from "../components/main-content/forecast"
 import GeneralCard from "../components/main-content/GeneralCard"
-import type { MainInfoProps } from "../helper/prop"
 import { getDetailData, type IDetailData } from "../helper/getData"
+import { SearchContext } from "../context/SearchContext"
 
-const MainInfo = (props: MainInfoProps) => {
-    const { isSearch, setIsSearch } = props;
+const MainInfo = () => {
+    const { isSearch } = useContext(SearchContext);
 
     let detailData = getDetailData();
     useEffect(() => {
@@ -17,16 +17,10 @@ const MainInfo = (props: MainInfoProps) => {
         <>
             <div className="w-full flex flex-col lg:flex-row lg:justify-center gap-7 lg:gap-15 mx-auto p-4 lg:p-5 max-w-full lg:max-w-5xl">
                 <div className="w-full lg:w-1/3 mb-7 lg:mb-0 flex justify-center">
-                    <GeneralCard
-                        isSearch={isSearch}
-                        setIsSearch={setIsSearch}
-                    />
+                    <GeneralCard />
                 </div>
                 <div className="w-full lg:w-2/3">
-                    <ForecastCards
-                        isSearch={isSearch}
-                        setIsSearch={setIsSearch}
-                    />
+                    <ForecastCards />
                 </div>
             </div>
             <div className="w-full flex flex-col lg:flex-row items-center justify-center">
@@ -40,10 +34,7 @@ const MainInfo = (props: MainInfoProps) => {
                     ))}
                 </div>
                 <div className="p-4 w-[40vw]">
-                    <RainChart
-                        isSearch={isSearch}
-                        setIsSearch={setIsSearch}
-                    />
+                    <RainChart />
                 </div>
 
             </div>

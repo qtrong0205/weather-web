@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getGeneralData } from "../../helper/getData"
-import type { MainInfoProps } from "../../helper/prop";
+import { SearchContext } from "../../context/SearchContext";
 
-const GeneralCard = (props: MainInfoProps) => {
-    const { isSearch, setIsSearch } = props;
+const GeneralCard = () => {
+    const { isSearch, setIsSearch } = useContext(SearchContext);
     let data = getGeneralData();
     const [iconUrl, setIconUrl] = useState("");
     useEffect(() => {
