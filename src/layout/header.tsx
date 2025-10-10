@@ -4,9 +4,12 @@ import SearchBar from "../components/header/SearchBar"
 import type { HeaderProps } from "../helper/prop";
 import { SearchContext } from "../context/SearchContext";
 
+interface IHeaderProps {
+    lat: number
+    lon: number
+}
 
-
-const Header = () => {
+const Header = (props: IHeaderProps) => {
     const { setIsSearch } = useContext(SearchContext);
     return (
         <div className="flex p-5 justify-center items-center sm:gap-20">

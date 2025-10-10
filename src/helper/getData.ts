@@ -202,4 +202,4 @@ const getRainData = async () => {
     return rainData;
 };
 
-export { createData, getGeneralData, getForecastData, getDetailData, getRainData };
+export { createData, getGeneralData, getForecastData, getDetailData, getRainData, weatherData };
