@@ -1,73 +1,96 @@
-# React + TypeScript + Vite
+# 🌤️ Weather Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Một ứng dụng web nhỏ giúp hiển thị thông tin thời tiết của các thành phố trên thế giới.  
+Dự án được xây dựng để thực hành **React + TypeScript** và cách làm việc với **API thời tiết thực tế**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tính năng chính
 
-## React Compiler
+- Tìm kiếm thời tiết theo tên thành phố.  
+- Hiển thị các thông tin:
+  - Nhiệt độ hiện tại (°C)
+  - Dự báo thời tiết 7 ngày kế tiếp
+  - Độ ẩm, áp suất, tầm nhìn, tốc độ gió
+  - Xác suất mưa theo giờ (Rain Probability Chart)  
+- Giao diện tối giản, hiện đại, thân thiện với người dùng.  
+- Tự động cập nhật dữ liệu mỗi khi tìm kiếm địa điểm mới.  
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🧩 Công nghệ sử dụng
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- ⚛️ **React + TypeScript**
+- 💅 **Tailwind CSS**
+- 📊 **Recharts** – hiển thị biểu đồ xác suất mưa  
+- 🌍 **Open-Meteo API** – lấy dữ liệu thời tiết theo tọa độ
+- ☁️ **Vercel** – deploy và quản lý môi trường
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## ⚙️ Cấu trúc thư mục
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+ ├─ components/      # Các component giao diện chính
+ ├─ helper/          # Hàm xử lý dữ liệu, API call
+ ├─ layout/          # Layout chung cho toàn app
+ ├─ assets/          # Ảnh, icon...
+ └─ App.tsx          # Điểm khởi đầu ứng dụng
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🧠 Mục tiêu học tập
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Dự án này được tạo ra với mục tiêu:
+- Hiểu cách gọi và xử lý **API** trong React.  
+- Thực hành **state management cơ bản (useState, useEffect)**.  
+- Làm quen với **môi trường build & deploy thực tế trên Vercel**.  
+- Làm quen với việc kết hợp giữa **React và Tailwind**
+- Làm bước đệm cho các dự án front-end lớn hơn sau này.  
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 🔑 Biến môi trường
+
+Tạo file `.env` ở thư mục gốc và thêm các biến sau:
 ```
+
+VITE_WEATHER_API_KEY=your_openweathermap_api_key
+VITE_FORECAST_API_KEY=your_open_meteo_api_key
+
+````
+
+> ⚠️ Khi deploy, thêm key này vào phần **Environment Variables** trên Vercel để bảo mật.
+
+---
+
+## 🖥️ Chạy project
+
+```bash
+# Cài đặt dependencies
+npm install
+
+# Chạy ở môi trường dev
+npm run dev
+
+# Build production
+npm run build
+````
+
+---
+
+---
+
+## 🌐 Demo
+
+🔗 [Xem bản deploy trên Vercel](https://weather-web-eight-xi.vercel.app/)
+
+---
+
+## 👨‍💻 Tác giả
+
+Dự án được thực hiện bởi **Quốc Trọng**
+
+> “Một project nhỏ để học, nhưng lại là bước khởi đầu cho những thứ lớn hơn.” 🌱
+
+---
