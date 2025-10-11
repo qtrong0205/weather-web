@@ -1,5 +1,5 @@
 // App.tsx
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Background from "./layout/background"
 import Header from "./layout/header"
 import MainInfo from "./layout/MainInfo"
